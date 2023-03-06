@@ -1,17 +1,28 @@
 body {
-    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    font-family: 'Courier New'
 }
 
 .dropdown {
+    width: 30%;
     margin: auto;
-    width: 50%;
     text-align: center;
-    font-family: 'Courier New', Courier, monospace;
 }
 
 .dogImage {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    margin-top: 5%;
+    width: 30%;
 }
+
+.btn {
+    margin-left: 5%;
+    background-color: lightblue;
+    color: black;
+    border-color: lightblue;
+}
+
+
+
