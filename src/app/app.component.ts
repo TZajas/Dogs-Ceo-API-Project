@@ -15,8 +15,6 @@ export class AppComponent{
 
   hasSubBreed: boolean = false;
 
-  randomNumber: number = 0;
-  breedImage: any= "";
   dogImage: any = "https://dog.ceo/img/dog-api-logo.svg";
 
   constructor(private http: HttpClient){
