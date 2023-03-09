@@ -25,8 +25,10 @@
         <option *ngFor="let subBreed of subBreeds" [value]="subBreed">{{subBreed}}</option>
       </select>
 
+      <button type="button" class="btn btn-primary" (click)="newImage()" *ngIf="selectedBreed!=''">New Image</button>
+
       <!--Return from subbreed list to main list-->
-      <button type="button "class="btn btn-primary" *ngIf="hasSubBreed" (click)="returnToFullList()">Return to full list</button>
+      <button type="button "class="btn btn-primary margin-8" *ngIf="hasSubBreed" (click)="returnToFullList()">Return to full list</button>
 
     </div>
     <hr>

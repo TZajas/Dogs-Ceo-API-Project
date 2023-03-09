@@ -12,6 +12,7 @@ export class AppComponent{
   subBreeds: any=[];
 
   selectedBreed: any = "";
+  selectedSubBreed: any = "";
 
   hasSubBreed: boolean = false;
 
@@ -63,7 +64,8 @@ export class AppComponent{
 
   //fetches the image of selected subbreed from DOG CEO API
   loadSubBreedImage(event: any) {
-      this.http.get('https://dog.ceo/api/breed/'+ this.selectedBreed + '/' + event.target.value + '/images/random')
+      this.selectedSubBreed = event.target.value;
+      this.http.get('https://dog.ceo/api/breed/'+ this.selectedBreed + '/' + this.selectedSubBreed + '/images/random')
       .subscribe((result: any)=>{
         this.dogImage = result["message"];
       });
@@ -72,9 +74,24 @@ export class AppComponent{
   //returns to main list of breeds when button is clicked
   returnToFullList(): any {
     this.hasSubBreed = false;
+    this.selectedSubBreed = "";
     this.dogImage="https://dog.ceo/img/dog-api-logo.svg";
   }
 
   //return new image
+  newImage(): any{
+    if(this.selectedSubBreed==""){
+        this.http.get('https://dog.ceo/api/breed/'+ this.selectedBreed + '/images/random')
+        .subscribe((result: any)=>{
+          this.dogImage = result["message"];
+        });
+    }else{
+        this.http.get('https://dog.ceo/api/breed/'+ this.selectedBreed + '/' + this.selectedSubBreed + '/images/random')
+        .subscribe((result: any)=>{
+          this.dogImage = result["message"];
+        });
+    }
+    
+  }
 
 }
