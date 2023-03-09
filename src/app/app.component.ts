@@ -16,7 +16,7 @@ export class AppComponent{
   hasSubBreed: boolean = false;
 
   randomNumber: number = 0;
-  breedImages: any= [];
+  breedImage: any= "";
   dogImage: any = "https://dog.ceo/img/dog-api-logo.svg";
 
   constructor(private http: HttpClient){
@@ -51,12 +51,9 @@ export class AppComponent{
         this.loadSubBreedDropdown(this.selectedBreed);
         this.dogImage="";
     }else{
-        this.http.get('https://dog.ceo/api/breed/' + this.selectedBreed + '/images')
+        this.http.get('https://dog.ceo/api/breed/' + this.selectedBreed + '/images/random')
         .subscribe((result: any)=>{
-          this.breedImages = result["message"];
-          //selects random image to show from list of available images
-          this.randomNumber = Math.floor(Math.random() * this.breedImages.length);
-          this.dogImage = this.breedImages[this.randomNumber];
+          this.dogImage = result["message"];
         });
     }
   }
@@ -68,12 +65,9 @@ export class AppComponent{
 
   //fetches the image of selected subbreed from DOG CEO API
   loadSubBreedImage(event: any) {
-      this.http.get('https://dog.ceo/api/breed/'+ this.selectedBreed + '/' + event.target.value + '/images')
+      this.http.get('https://dog.ceo/api/breed/'+ this.selectedBreed + '/' + event.target.value + '/images/random')
       .subscribe((result: any)=>{
-        this.breedImages = result["message"];
-        console.log(this.breedImages);
-        this.randomNumber = Math.floor( Math.random() * this.breedImages.length );
-        this.dogImage = this.breedImages[this.randomNumber];
+        this.dogImage = result["message"];
       });
   }
 
@@ -82,4 +76,7 @@ export class AppComponent{
     this.hasSubBreed = false;
     this.dogImage="https://dog.ceo/img/dog-api-logo.svg";
   }
+
+  //return new image
+
 }
